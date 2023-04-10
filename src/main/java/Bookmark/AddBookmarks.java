@@ -22,6 +22,10 @@ public class AddBookmarks {
 
         String prefix = "18214";
         String searchKeyword = "ROUTINE CARD";
+        String searchKeyword2= "Estimator Comment";
+        String searchKeyword3= "Controller Comment";
+        String searchKeyword4= "Engineering Statement";
+        String searchKeyword5= "Verification in accordance";
 
 
 
@@ -70,20 +74,24 @@ public class AddBookmarks {
                     String pageText = stripper.getText(document);
 
 
-                    if (pageText.toLowerCase().contains(searchKeyword.toLowerCase())) {
-                        String bookmarkName = prefix + "-" + String.format("%04d", startNumber++);
-                        System.out.println("Adding bookmark: " + bookmarkName);
-                        PDOutlineItem bookmark = new PDOutlineItem();
-                        bookmark.setTitle(bookmarkName);
-                        PDPageXYZDestination dest = new PDPageXYZDestination();
-                        dest.setPage(page);
-                        dest.setZoom(1); // Adjust the zoom level as needed.
-                        dest.setTop(750); // Adjust the vertical position as needed.
-                        PDActionGoTo action = new PDActionGoTo();
-                        action.setDestination(dest);
-                        bookmark.setAction(action);
-                        outline.addLast(bookmark);
-                    }
+                     if (pageText.toLowerCase().contains(searchKeyword.toLowerCase())
+                             || pageText.toLowerCase().contains(searchKeyword2.toLowerCase())
+                             || pageText.toLowerCase().contains(searchKeyword3.toLowerCase())
+                             || pageText.toLowerCase().contains(searchKeyword4.toLowerCase())
+                             || pageText.toLowerCase().contains(searchKeyword5.toLowerCase())) {
+                    String bookmarkName = prefix + "-" + String.format("%04d", startNumber++);
+                    System.out.println("Adding bookmark: " + bookmarkName);
+                    PDOutlineItem bookmark = new PDOutlineItem();
+                    bookmark.setTitle(bookmarkName);
+                    PDPageXYZDestination dest = new PDPageXYZDestination();
+                    dest.setPage(page);
+                    dest.setZoom(1); // Adjust the zoom level as needed.
+                    dest.setTop(750); // Adjust the vertical position as needed.
+                    PDActionGoTo action = new PDActionGoTo();
+                    action.setDestination(dest);
+                    bookmark.setAction(action);
+                    outline.addLast(bookmark);
+                     }
                 }
 
                 System.out.println("Saving the output PDF file...");
