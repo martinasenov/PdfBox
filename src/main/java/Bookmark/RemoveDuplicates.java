@@ -2,131 +2,92 @@ package Bookmark;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageTree;
-import org.apache.pdfbox.pdmodel.interactive.action.PDActionGoTo;
-import org.apache.pdfbox.pdmodel.interactive.documentnavigation.destination.PDDestination;
-import org.apache.pdfbox.pdmodel.interactive.documentnavigation.destination.PDNamedDestination;
-import org.apache.pdfbox.pdmodel.interactive.documentnavigation.destination.PDPageDestination;
-import org.apache.pdfbox.pdmodel.interactive.documentnavigation.outline.PDDocumentOutline;
 import org.apache.pdfbox.pdmodel.interactive.documentnavigation.outline.PDOutlineItem;
 import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RemoveDuplicates {
     public static void main(String[] args) throws IOException {
         String inputFilePath = "C:\\Users\\martin.asenov\\Desktop\\PROJECTS\\SEASON 4\\OE-IJH\\OE-IJH-H-22_Locked_24.04.2023.pdf_Bookmarked.pdf";
         String outputFilePath = inputFilePath+"_Duplicates Removed.pdf";
 
-        int duplicatePagesFound = 0;
-
         try (PDDocument document = PDDocument.load(new File(inputFilePath))) {
-            PDFTextStripper textStripper = new PDFTextStripper();
-            PDDocumentOutline outline = document.getDocumentCatalog().getDocumentOutline();
+            PDOutlineItem root = document.getDocumentCatalog().getDocumentOutline().getFirstChild();
 
-            List<PageRange> bookmarkRanges = getBookmarkRanges(outline.getFirstChild(), document);
+            Map<Integer, String> pagesText = new HashMap<>();
+            List<Integer> pagesToRemove = new ArrayList<>();
 
-            for (PageRange range : bookmarkRanges) {
-                List<String> pageContents = new ArrayList<>();
+            while (root != null) {
+                int[] range = getBookmarkRanges(root, document);
 
-                for (int pageIndex = range.start; pageIndex <= range.end; pageIndex++) {
-                    System.out.println("Processing page: " + (pageIndex + 1));
-                    textStripper.setStartPage(pageIndex + 1);
-                    textStripper.setEndPage(pageIndex + 1);
-                    String pageText = textStripper.getText(document);
+                if (range != null) {
+                    System.out.printf("Processing bookmark range: %d - %d%n", range[0], range[1]);
 
-                    if (!isDuplicate(pageContents, pageText)) {
-                        pageContents.add(pageText);
-                    } else {
-                        System.out.println("Duplicate page found: " + (pageIndex + 1));
-                        document.removePage(pageIndex);
-                        pageIndex--; // Decrement pageIndex to account for the removed page
-                        range.end--; // Decrement the end index of the range
-                        duplicatePagesFound++;
+                    boolean isFirstPage = true;
+                    for (int i = range[0]; i <= range[1]; i++) {
+                        String currentPageText = extractText(document, document.getPage(i - 1));
+
+                        if (pagesText.containsValue(currentPageText) && !isFirstPage) {
+                            pagesToRemove.add(i);
+                        } else {
+                            pagesText.put(i, currentPageText);
+                        }
+                        isFirstPage = false;
                     }
-                }
-            }
-
-            document.save(outputFilePath);
-        }
-
-        System.out.println("Duplicate pages found: " + duplicatePagesFound);
-        System.out.println("Pages removed: " + duplicatePagesFound);
-    }
-
-    private static List<PageRange> getBookmarkRanges(PDOutlineItem outlineItem, PDDocument document) throws IOException {
-        List<PageRange> ranges = new ArrayList<>();
-
-        while (outlineItem != null) {
-            System.out.println("Processing outline item: " + outlineItem.getTitle());
-
-            PDPage startPage = null;
-            PDPage endPage = null;
-            PDPageTree pageTree = document.getPages();
-            PDDestination destination = outlineItem.getDestination();
-
-            if (destination == null && outlineItem.getAction() instanceof PDActionGoTo action) {
-                destination = action.getDestination();
-            }
-
-            if (destination instanceof PDPageDestination) {
-                startPage = ((PDPageDestination) destination).getPage();
-            } else if (destination instanceof PDNamedDestination) {
-                PDPageDestination pageDestination = document.getDocumentCatalog().findNamedDestinationPage((PDNamedDestination) destination);
-                if (pageDestination != null) {
-                    startPage = pageDestination.getPage();
-                }
-            }
-
-            if (outlineItem.getNextSibling() != null) {
-                destination = outlineItem.getNextSibling().getDestination();
-                if (destination == null && outlineItem.getNextSibling().getAction() instanceof PDActionGoTo action) {
-                    destination = action.getDestination();
+                    // Clear the pagesText map after processing the bookmark range
+                    pagesText.clear();
                 }
 
-                if (destination instanceof PDPageDestination) {
-                    endPage = ((PDPageDestination) destination).getPage();
-                } else if (destination instanceof PDNamedDestination) {
-                    PDPageDestination pageDestination = document.getDocumentCatalog().findNamedDestinationPage((PDNamedDestination) destination);
-                    if (pageDestination != null) {
-                        endPage = pageDestination.getPage();
-                    }
-                }
+                root = root.getNextSibling();
             }
 
-            if (startPage != null && endPage != null) {
-                int startIndex = pageTree.indexOf(startPage);
-                int endIndex = pageTree.indexOf(endPage) - 1;
-                System.out.println("Bookmark range: " + startIndex + " - " + endIndex);
-                ranges.add(new PageRange(startIndex, endIndex));
-            } else {
-                System.out.println("Start or end page not found");
+            System.out.println("Duplicate pages found: " + pagesToRemove.size());
+
+            for (int i = pagesToRemove.size() - 1; i >= 0; i--) {
+                document.removePage(pagesToRemove.get(i) - 1);
             }
 
-            if (outlineItem.hasChildren()) {
-                ranges.addAll(getBookmarkRanges(outlineItem.getFirstChild(), document));
-            }
+            System.out.println("Pages removed: " + pagesToRemove.size());
 
-            outlineItem = outlineItem.getNextSibling();
-        }
-
-        return ranges;
-    }
-
-    private static boolean isDuplicate(List<String> pageContents, String pageText) {
-        return pageContents.stream().anyMatch(content -> content.trim().equalsIgnoreCase(pageText.trim()));
-    }
-
-    private static class PageRange {
-        int start;
-        int end;
-
-        public PageRange(int start, int end) {
-            this.start = start;
-            this.end = end;
+            document.save(new File(outputFilePath));
         }
     }
+
+    private static int[] getBookmarkRanges(PDOutlineItem outlineItem, PDDocument document) {
+        int[] range = new int[2];
+
+        try {
+            PDPage startPage = outlineItem.findDestinationPage(document);
+            PDOutlineItem nextSibling = outlineItem.getNextSibling();
+            PDPage endPage = nextSibling != null ? nextSibling.findDestinationPage(document) : document.getPage(document.getNumberOfPages() - 1);
+
+            range[0] = document.getPages().indexOf(startPage) + 1;
+            range[1] = document.getPages().indexOf(endPage) + 1;
+
+            if (range[0] == -1 || range[1] == -1) {
+                throw new IOException("Start or end page not found");
+            }
+
+        } catch (IOException e) {
+            System.out.println("Start or end page not found for outline item: " + outlineItem.getTitle());
+            return null;
+        }
+
+        return range;
+    }
+
+    private static String extractText(PDDocument document, PDPage page) throws IOException {
+        PDFTextStripper textStripper = new PDFTextStripper();
+        textStripper.setStartPage(document.getPages().indexOf(page) + 1);
+        textStripper.setEndPage(document.getPages().indexOf(page) + 1);
+
+        return textStripper.getText(document);
+    }
+
 }
