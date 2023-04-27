@@ -20,12 +20,12 @@ public class AddBookmarks {
 
     public static void main(String[] args) throws IOException {
 
-        String prefix = "18214";
+        String prefix = "18293";
         String searchKeyword = "ROUTINE CARD";
-        String searchKeyword2= "Estimator Comment";
-        String searchKeyword3= "Controller Comment";
-        String searchKeyword4= "Engineering Statement";
-        String searchKeyword5= "Verification in accordance";
+        String searchKeyword2= "ESTIMATOR COMMENT";
+        String searchKeyword3= "I hereby confirm";
+        String searchKeyword4= "CONTROLLER COMMENT";
+        String searchKeyword5= "Form 121";
 
 
 
@@ -33,7 +33,7 @@ public class AddBookmarks {
         Scanner scanner = new Scanner(System.in);
 
 
-        String excelPath = "C:\\Users\\mitha\\OneDrive\\Desktop\\acrobat-sign-main\\sdks\\PdfBox\\src\\main\\java\\Bookmark\\BookmarkDirectories.xlsx";
+        String excelPath = "C:\\Users\\mitha\\IdeaProjects\\PdfBox\\src\\main\\java\\Bookmark\\BookmarkDirectories.xlsx";
         XSSFWorkbook workbook = new XSSFWorkbook(excelPath);
         XSSFSheet sheet = workbook.getSheet("Sheet1");
 
@@ -74,24 +74,24 @@ public class AddBookmarks {
                     String pageText = stripper.getText(document);
 
 
-                     if (pageText.toLowerCase().contains(searchKeyword.toLowerCase())
-                             || pageText.toLowerCase().contains(searchKeyword2.toLowerCase())
-                             || pageText.toLowerCase().contains(searchKeyword3.toLowerCase())
-                             || pageText.toLowerCase().contains(searchKeyword4.toLowerCase())
-                             || pageText.toLowerCase().contains(searchKeyword5.toLowerCase())) {
-                    String bookmarkName = prefix + "-" + String.format("%04d", startNumber++);
-                    System.out.println("Adding bookmark: " + bookmarkName);
-                    PDOutlineItem bookmark = new PDOutlineItem();
-                    bookmark.setTitle(bookmarkName);
-                    PDPageXYZDestination dest = new PDPageXYZDestination();
-                    dest.setPage(page);
-                    dest.setZoom(1); // Adjust the zoom level as needed.
-                    dest.setTop(750); // Adjust the vertical position as needed.
-                    PDActionGoTo action = new PDActionGoTo();
-                    action.setDestination(dest);
-                    bookmark.setAction(action);
-                    outline.addLast(bookmark);
-                     }
+                    if (pageText.toLowerCase().contains(searchKeyword.toLowerCase())
+                            || pageText.toLowerCase().contains(searchKeyword2.toLowerCase())
+                            || pageText.toLowerCase().contains(searchKeyword3.toLowerCase())
+                            || pageText.toLowerCase().contains(searchKeyword4.toLowerCase())
+                            || pageText.toLowerCase().contains(searchKeyword5.toLowerCase())) {
+                        String bookmarkName = prefix + "-" + String.format("%04d", startNumber++);
+                        System.out.println("Adding bookmark: " + bookmarkName);
+                        PDOutlineItem bookmark = new PDOutlineItem();
+                        bookmark.setTitle(bookmarkName);
+                        PDPageXYZDestination dest = new PDPageXYZDestination();
+                        dest.setPage(page);
+                        dest.setZoom(1); // Adjust the zoom level as needed.
+                        dest.setTop(750); // Adjust the vertical position as needed.
+                        PDActionGoTo action = new PDActionGoTo();
+                        action.setDestination(dest);
+                        bookmark.setAction(action);
+                        outline.addLast(bookmark);
+                    }
                 }
 
                 System.out.println("Saving the output PDF file...");
