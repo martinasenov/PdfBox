@@ -19,7 +19,7 @@ public class PageNumbers {
 
         ArrayList<String> uploadList = new ArrayList<>();
 
-        String uploadListPath = "C:\\Users\\martin.asenov\\Desktop\\CAA BG\\Book1.xlsx";
+        String uploadListPath = "C:\\Users\\mitha\\IdeaProjects\\PdfBox\\src\\main\\java\\Bookmark\\AMMRefs.xlsx";
         FileInputStream fis = new FileInputStream(uploadListPath);
         XSSFWorkbook uploadListWorkbook = new XSSFWorkbook(fis);
         XSSFSheet uploadSheet = uploadListWorkbook.getSheet("Sheet1");
@@ -27,13 +27,13 @@ public class PageNumbers {
         String taskNumber = "";
 
         for (int i = 1; i < rowCountUploadList; i++) {
-            taskNumber = uploadSheet.getRow(i).getCell(1).getStringCellValue();
+            taskNumber = uploadSheet.getRow(i).getCell(4).getStringCellValue();
             uploadList.add(taskNumber);
         }
 
         for (int i = 0; i < uploadList.size(); i++) {
             String task = uploadList.get(i);
-            String filePath = "C:\\Users\\martin.asenov\\Desktop\\New folder\\WO8294_MPD WORKPACK_TC.pdf";
+            String filePath = "C:\\Users\\mitha\\Downloads\\OE-ICA_6Y Check_COVERPAGES REMOVED.pdf";
 
             try {
                 int pageNumber = searchInPDF(filePath, task);
@@ -43,7 +43,7 @@ public class PageNumbers {
                 if(row == null) {
                     row = uploadSheet.createRow(i + 1);
                 }
-                Cell cell = row.createCell(2);  // 2 represents column C
+                Cell cell = row.createCell(5);  // 2 represents column C
                 cell.setCellValue(pageNumber);
 
             } catch (IOException e) {
