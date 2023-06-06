@@ -22,20 +22,24 @@ import java.util.Scanner;
 public class AddBookmarksAndText {
     public static void main(String[] args) throws IOException {
         ArrayList<String> uploadList = new ArrayList<>();
+        ArrayList<Integer> itemNumbers = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter H901 WO number");
         String prefix = scanner.nextLine();
 
-        String uploadListPath = "C:\\Users\\mitha\\IdeaProjects\\PdfBox\\src\\main\\java\\Bookmark\\testUpload list for bookmarks.xlsx";
+        String uploadListPath = "C:\\Users\\mitha\\IdeaProjects\\PdfBox\\src\\main\\java\\Bookmark\\AMMRefs.xlsx";
         XSSFWorkbook uploadListWorkbook = new XSSFWorkbook(uploadListPath);
         XSSFSheet uploadSheet = uploadListWorkbook.getSheet("Sheet1");
         int rowCountUploadList = uploadSheet.getPhysicalNumberOfRows();
         String workOrderNumber = "";
 
         for (int i = 1; i < rowCountUploadList; i++) {
-            workOrderNumber = uploadSheet.getRow(i).getCell(1).getStringCellValue();
+            workOrderNumber = uploadSheet.getRow(i).getCell(4).getStringCellValue();
             uploadList.add(workOrderNumber);
+
+            int itemNumber = (int) uploadSheet.getRow(i).getCell(0).getNumericCellValue(); // read item number from column A
+            itemNumbers.add(itemNumber); // add item number to itemNumbers ArrayList
         }
 
         ArrayList<String> filePathArray = new ArrayList<>();
@@ -62,7 +66,7 @@ public class AddBookmarksAndText {
             String outputFilePath = inputFilePath + "_Bookmarked.pdf";
 
             try {
-                processPDF(inputFilePath, outputFilePath, uploadList, startNumber, prefix);
+                processPDF(inputFilePath, outputFilePath, uploadList, itemNumbers, prefix);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -72,7 +76,7 @@ public class AddBookmarksAndText {
     }
 
 
-    private static void processPDF(String inputFilePath, String outputFilePath, ArrayList<String> keywords, int startNumber, String prefix) throws IOException {
+    private static void processPDF(String inputFilePath, String outputFilePath, ArrayList<String> uploadList, ArrayList<Integer> itemNumbers, String prefix) throws IOException {
         System.out.println("Loading the input PDF file...");
         PDDocument document = PDDocument.load(new File(inputFilePath));
         PDPageTree pages = document.getPages();
@@ -89,7 +93,9 @@ public class AddBookmarksAndText {
         PDOutlineItem lastBookmark = null;
         int bookmarkStartIndex = -1;
 
-        for (String keyword : keywords) {
+        for (int i = 0; i < Math.min(uploadList.size(), itemNumbers.size()); i++) {
+            String keyword = uploadList.get(i);
+            int itemNumber = itemNumbers.get(i);
             for (int pageIndex = currentPageIndex; pageIndex < pages.getCount(); pageIndex++) {
                 System.out.println("Processing page " + (pageIndex + 1) + "...");
                 PDPage page = pages.get(pageIndex);
@@ -98,7 +104,7 @@ public class AddBookmarksAndText {
                 String pageText = stripper.getText(document);
 
                 if (pageText.toLowerCase().contains(keyword.toLowerCase())) {
-                    String bookmarkName = prefix + "-" + String.format("%04d", startNumber++);
+                    String bookmarkName = prefix + "-" + String.format("%04d", itemNumber);
                     System.out.println("Adding bookmark: " + bookmarkName);
                     PDOutlineItem bookmark = new PDOutlineItem();
                     bookmark.setTitle(bookmarkName);
@@ -113,8 +119,8 @@ public class AddBookmarksAndText {
 
                     if (lastBookmark != null && bookmarkStartIndex != -1) {
                         // Write the bookmark name to the pages within the range.
-                        for (int i = bookmarkStartIndex; i < pageIndex; i++) {
-                            PDPage currentPage = pages.get(i);
+                        for (int z = bookmarkStartIndex; z < pageIndex; z++) {
+                            PDPage currentPage = pages.get(z);
                             PDPageContentStream contentStream = new PDPageContentStream(document, currentPage, PDPageContentStream.AppendMode.APPEND, true);
                             contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
                             contentStream.setNonStrokingColor(Color.BLACK);

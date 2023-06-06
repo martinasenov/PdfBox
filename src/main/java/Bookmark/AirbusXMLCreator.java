@@ -87,7 +87,12 @@ public class AirbusXMLCreator {
                 // Task elements
             Element task1 = doc.createElement("Task");
             Element dmId1 = doc.createElement("dmId");
-            dmId1.appendChild(doc.createTextNode("609898_SGML_C_EN" + AmmRef+"00"));
+
+            if(AmmRef.length()<=12){
+                dmId1.appendChild(doc.createTextNode("609898_SGML_C_EN" + AmmRef+"00"));
+            }else{
+                dmId1.appendChild(doc.createTextNode("609898_SGML_C_EN" + AmmRef));
+            }
             task1.appendChild(dmId1);
             Element productKey1 = doc.createElement("productKey");
             productKey1.appendChild(doc.createTextNode("[N]##69X#AMM###"));
