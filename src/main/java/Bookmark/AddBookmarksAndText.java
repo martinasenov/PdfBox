@@ -16,8 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class AddBookmarksAndText {
     public static void main(String[] args) throws IOException {
@@ -56,8 +55,6 @@ public class AddBookmarksAndText {
         }
 
 
-        int startNumber = 1;
-
 
         if (!filePathArray.isEmpty()) {
             String inputFilePath = filePathArray.get(0);
@@ -93,7 +90,14 @@ public class AddBookmarksAndText {
         PDOutlineItem lastBookmark = null;
         int bookmarkStartIndex = -1;
 
+        Set<Integer> skipNumbers = new HashSet<>(Arrays.asList(42, 44, 172, 367, 371, 376, 378, 380, 382, 384, 393, 395, 397, 399, 401, 403, 405, 485, 487,492,493,494));
+
         for (int i = 0; i < Math.min(uploadList.size(), itemNumbers.size()); i++) {
+
+            if (skipNumbers.contains(i)) {
+                continue;
+            }
+
             String keyword = uploadList.get(i);
             int itemNumber = itemNumbers.get(i);
             for (int pageIndex = currentPageIndex; pageIndex < pages.getCount(); pageIndex++) {
@@ -123,7 +127,7 @@ public class AddBookmarksAndText {
                             PDPage currentPage = pages.get(z);
                             PDPageContentStream contentStream = new PDPageContentStream(document, currentPage, PDPageContentStream.AppendMode.APPEND, true);
                             contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
-                            contentStream.setNonStrokingColor(Color.BLACK);
+                            contentStream.setNonStrokingColor(Color.RED);
                             contentStream.beginText();
                             contentStream.newLineAtOffset(494, 830);
                             contentStream.showText(lastBookmark.getTitle());
@@ -147,7 +151,7 @@ public class AddBookmarksAndText {
                 PDPage currentPage = pages.get(i);
                 PDPageContentStream contentStream = new PDPageContentStream(document, currentPage, PDPageContentStream.AppendMode.APPEND, true);
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
-                contentStream.setNonStrokingColor(Color.BLACK);
+                contentStream.setNonStrokingColor(Color.RED);
                 contentStream.beginText();
                 contentStream.newLineAtOffset(494, 830);
                 contentStream.showText(lastBookmark.getTitle());
