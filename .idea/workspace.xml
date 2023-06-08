@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cfd2f12-324e-4c49-b024-0cf59f2c7f86" name="Changes" comment="Zoom Levels adjusted to 0.673">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Bookmark/WriteExistingBookmark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3cfd2f12-324e-4c49-b024-0cf59f2c7f86" name="Changes" comment="write Existing bookmark added">
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/AddBookmarksAndText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/AddBookmarksAndText.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/WriteExistingBookmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/WriteExistingBookmark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Bookmark/AddBookmarks.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Bookmark/AddBookmarks.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Bookmark/WPBookmarks.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Bookmark/WPBookmarks.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +181,7 @@
       <workItem from="1686007461121" duration="70000" />
       <workItem from="1686078679965" duration="10617000" />
       <workItem from="1686168802058" duration="5888000" />
-      <workItem from="1686258601721" duration="3878000" />
+      <workItem from="1686258601721" duration="4289000" />
     </task>
     <task id="LOCAL-00001" summary="before tesseracts">
       <created>1680819336546</created>
@@ -251,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686262405444</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="write Existing bookmark added">
+      <created>1686265217395</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1686265217395</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,6 +299,7 @@
     <MESSAGE value="AddBookmarksAndText modified" />
     <MESSAGE value="AddBookmarksAndText skip numbers added" />
     <MESSAGE value="Zoom Levels adjusted to 0.673" />
-    <option name="LAST_COMMIT_MESSAGE" value="Zoom Levels adjusted to 0.673" />
+    <MESSAGE value="write Existing bookmark added" />
+    <option name="LAST_COMMIT_MESSAGE" value="write Existing bookmark added" />
   </component>
 </project>

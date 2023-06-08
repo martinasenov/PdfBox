@@ -89,13 +89,16 @@ public class AddBookmarksAndText {
         PDOutlineItem lastBookmark = null;
         int bookmarkStartIndex = -1;
 
-        Set<Integer> skipNumbers = new HashSet<>(Arrays.asList(42, 44, 172, 367, 371, 376, 378, 380, 382, 384, 393, 395, 397, 399, 401, 403, 405, 485, 487,492,493,494));
+
+       //Set<Integer> skipNumbers = new HashSet<>(Arrays.asList(42, 44, 172, 367, 371, 376, 378, 380, 382, 384, 393, 395, 397, 399, 401, 403, 405, 485, 487,492,493,494));
 
         for (int i = 0; i < Math.min(uploadList.size(), itemNumbers.size()); i++) {
 
-            if (skipNumbers.contains(i)) {
+            /*if (skipNumbers.contains(i)) {
                 continue;
-            }
+            }*/
+
+
 
             String keyword = uploadList.get(i);
             int itemNumber = itemNumbers.get(i);
@@ -142,7 +145,7 @@ public class AddBookmarksAndText {
                     break;
                 }
             }
-        }
+    }
 
         // Write the bookmark name to the pages within the range for the last bookmark.
         if (lastBookmark != null && bookmarkStartIndex != -1) {
