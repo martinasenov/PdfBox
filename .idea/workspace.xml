@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cfd2f12-324e-4c49-b024-0cf59f2c7f86" name="Changes" comment="AddBookmarksAndText modified">
+    <list default="true" id="3cfd2f12-324e-4c49-b024-0cf59f2c7f86" name="Changes" comment="AddBookmarksAndText skip numbers added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/AMMRefs.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/AMMRefs.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/AddBookmarks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/AddBookmarks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/AddBookmarksAndText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/AddBookmarksAndText.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/BookmarkDirectories.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/BookmarkDirectories.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/WPBookmarks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/WPBookmarks.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,24 +40,25 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mitha\IdeaProjects\PdfBox\src\main\java\Bookmark" />
@@ -179,7 +180,8 @@
       <workItem from="1685991636339" duration="8007000" />
       <workItem from="1686007461121" duration="70000" />
       <workItem from="1686078679965" duration="10617000" />
-      <workItem from="1686168802058" duration="5555000" />
+      <workItem from="1686168802058" duration="5888000" />
+      <workItem from="1686258601721" duration="1930000" />
     </task>
     <task id="LOCAL-00001" summary="before tesseracts">
       <created>1680819336546</created>
@@ -237,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686092850624</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="AddBookmarksAndText skip numbers added">
+      <created>1686175099844</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1686175099844</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,6 +283,7 @@
     <MESSAGE value="AirbusXMLCreator Added" />
     <MESSAGE value="AirbusXMLCreator Added and excel file" />
     <MESSAGE value="AddBookmarksAndText modified" />
-    <option name="LAST_COMMIT_MESSAGE" value="AddBookmarksAndText modified" />
+    <MESSAGE value="AddBookmarksAndText skip numbers added" />
+    <option name="LAST_COMMIT_MESSAGE" value="AddBookmarksAndText skip numbers added" />
   </component>
 </project>

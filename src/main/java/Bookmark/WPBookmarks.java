@@ -100,8 +100,8 @@ public class WPBookmarks {
                         bookmark.setTitle(bookmarkName);
                         PDPageXYZDestination dest = new PDPageXYZDestination();
                         dest.setPage(page);
-                        dest.setZoom(1); // Adjust the zoom level as needed.
-                        dest.setTop(750); // Adjust the vertical position as needed.
+                        dest.setZoom(0.673F); // Adjust the zoom level as needed.
+                        dest.setTop(1000); // Adjust the vertical position as needed.
                         PDActionGoTo action = new PDActionGoTo();
                         action.setDestination(dest);
                         bookmark.setAction(action);

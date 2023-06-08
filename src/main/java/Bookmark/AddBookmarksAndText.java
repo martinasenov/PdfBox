@@ -23,9 +23,8 @@ public class AddBookmarksAndText {
         ArrayList<String> uploadList = new ArrayList<>();
         ArrayList<Integer> itemNumbers = new ArrayList<>();
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter H901 WO number");
-        String prefix = scanner.nextLine();
+
+        String prefix = "18483";
 
         String uploadListPath = "C:\\Users\\mitha\\IdeaProjects\\PdfBox\\src\\main\\java\\Bookmark\\AMMRefs.xlsx";
         XSSFWorkbook uploadListWorkbook = new XSSFWorkbook(uploadListPath);
@@ -84,7 +83,7 @@ public class AddBookmarksAndText {
 
         System.out.println("Enter starting page");
         Scanner scanner = new Scanner(System.in);
-        int currentPageIndex = scanner.nextInt();
+        int currentPageIndex = scanner.nextInt()-1;
         scanner.nextLine();
 
         PDOutlineItem lastBookmark = null;
@@ -114,7 +113,7 @@ public class AddBookmarksAndText {
                     bookmark.setTitle(bookmarkName);
                     PDPageXYZDestination dest = new PDPageXYZDestination();
                     dest.setPage(page);
-                    dest.setZoom(0.7F); // Adjust the zoom level as needed.
+                    dest.setZoom(0.673F); // Adjust the zoom level as needed.
                     dest.setTop(1000); // Adjust the vertical position as needed.
                     PDActionGoTo action = new PDActionGoTo();
                     action.setDestination(dest);
