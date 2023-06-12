@@ -24,9 +24,9 @@ public class AddBookmarksAndText {
         ArrayList<Integer> itemNumbers = new ArrayList<>();
 
 
-        String prefix = "18483";
+        String prefix = "H901 WO 18474";
 
-        String uploadListPath = "C:\\Users\\mitha\\IdeaProjects\\PdfBox\\src\\main\\java\\Bookmark\\AMMRefs.xlsx";
+        String uploadListPath = "C:\\Users\\mitha\\OneDrive\\Desktop\\OE-IDU\\OE-IDU WorkCards with pages.xlsx";
         XSSFWorkbook uploadListWorkbook = new XSSFWorkbook(uploadListPath);
         XSSFSheet uploadSheet = uploadListWorkbook.getSheet("Sheet1");
         int rowCountUploadList = uploadSheet.getPhysicalNumberOfRows();

@@ -19,7 +19,7 @@ public class PageNumbers {
 
         ArrayList<String> uploadList = new ArrayList<>();
 
-        String uploadListPath = "C:\\Users\\mitha\\IdeaProjects\\PdfBox\\src\\main\\java\\Bookmark\\AMMRefs.xlsx";
+        String uploadListPath = "C:\\Users\\mitha\\OneDrive\\Desktop\\OE-IDU\\WorkCard8395912915638208886.xlsx";
         FileInputStream fis = new FileInputStream(uploadListPath);
         XSSFWorkbook uploadListWorkbook = new XSSFWorkbook(fis);
         XSSFSheet uploadSheet = uploadListWorkbook.getSheet("Sheet1");
@@ -33,7 +33,7 @@ public class PageNumbers {
 
         for (int i = 0; i < uploadList.size(); i++) {
             String task = uploadList.get(i);
-            String filePath = "C:\\Users\\mitha\\Downloads\\OE-ICA_6Y Check_COVERPAGES REMOVED.pdf";
+            String filePath = "C:\\Users\\mitha\\OneDrive\\Desktop\\OE-IDU\\OE-IDU the latest WP.pdf";
 
             try {
                 int pageNumber = searchInPDF(filePath, task);

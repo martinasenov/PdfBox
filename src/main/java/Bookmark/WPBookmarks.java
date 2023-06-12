@@ -19,20 +19,23 @@ import java.util.Scanner;
 public class WPBookmarks {
     public static void main(String[] args) throws IOException {
         ArrayList<String> uploadList = new ArrayList<>();
+        ArrayList<Integer> itemNumbers = new ArrayList<>(); // create itemNumbers ArrayList
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter H901 WO number");
-        String prefix = scanner.nextLine();
+        String prefix = "H901 WO 18474";
 
-        String uploadListPath = "C:\\Users\\mitha\\IdeaProjects\\PdfBox\\src\\main\\java\\Bookmark\\testUpload list for bookmarks.xlsx";
+        String uploadListPath = "C:\\Users\\mitha\\OneDrive\\Desktop\\OE-IDU\\OE-IDU WorkCards with pages.xlsx";
         XSSFWorkbook uploadListWorkbook = new XSSFWorkbook(uploadListPath);
         XSSFSheet uploadSheet = uploadListWorkbook.getSheet("Sheet1");
         int rowCountUploadList = uploadSheet.getPhysicalNumberOfRows();
         String workOrderNumber = "";
 
         for (int i = 1; i < rowCountUploadList; i++) {
-            workOrderNumber = uploadSheet.getRow(i).getCell(1).getStringCellValue();
+            workOrderNumber = uploadSheet.getRow(i).getCell(4).getStringCellValue();
             uploadList.add(workOrderNumber);
+
+
+            int itemNumber = (int) uploadSheet.getRow(i).getCell(0).getNumericCellValue(); // read item number from column A
+            itemNumbers.add(itemNumber); // add item number to itemNumbers ArrayList
         }
 
         ArrayList<String> filePathArray = new ArrayList<>();
@@ -46,10 +49,10 @@ public class WPBookmarks {
         for (int j = 0; j < rowCount; j++) {
             String inputFilePath = sheet.getRow(j).getCell(0).getStringCellValue();
             filePathArray.add(inputFilePath);
+
+
         }
 
-
-        int startNumber = 1;
 
 
         if (!filePathArray.isEmpty()) {
@@ -59,7 +62,7 @@ public class WPBookmarks {
             String outputFilePath = inputFilePath + "_Bookmarked.pdf";
 
             try {
-                processPDF(inputFilePath, outputFilePath, uploadList, startNumber, prefix);
+                processPDF(inputFilePath, outputFilePath, uploadList, itemNumbers, prefix);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -69,7 +72,7 @@ public class WPBookmarks {
     }
 
 
-    private static void processPDF(String inputFilePath, String outputFilePath, ArrayList<String> keywords, int startNumber, String prefix) throws IOException {
+    private static void processPDF(String inputFilePath, String outputFilePath, ArrayList<String> uploadList, ArrayList<Integer> itemNumbers, String prefix) throws IOException {
             System.out.println("Loading the input PDF file...");
             PDDocument document = PDDocument.load(new File(inputFilePath));
             PDPageTree pages = document.getPages();
@@ -81,27 +84,32 @@ public class WPBookmarks {
 
           System.out.println("Enter starting page");
           Scanner scanner=new Scanner(System.in);
-          int currentPageIndex = scanner.nextInt();
+          int currentPageIndex = scanner.nextInt()-1;
           scanner.nextLine();
 
 
-            for (String keyword : keywords) {
-                for (int pageIndex = currentPageIndex; pageIndex < pages.getCount(); pageIndex++) {
-                    System.out.println("Processing page " + (pageIndex + 1) + "...");
-                    PDPage page = pages.get(pageIndex);
-                    stripper.setStartPage(pageIndex + 1);
-                    stripper.setEndPage(pageIndex + 1);
-                    String pageText = stripper.getText(document);
 
-                    if (pageText.toLowerCase().contains(keyword.toLowerCase())) {
-                        String bookmarkName = prefix + "-" + String.format("%04d", startNumber++);
-                        System.out.println("Adding bookmark: " + bookmarkName);
-                        PDOutlineItem bookmark = new PDOutlineItem();
-                        bookmark.setTitle(bookmarkName);
-                        PDPageXYZDestination dest = new PDPageXYZDestination();
-                        dest.setPage(page);
-                        dest.setZoom(0.673F); // Adjust the zoom level as needed.
-                        dest.setTop(1000); // Adjust the vertical position as needed.
+        for (int i = 0; i < Math.min(uploadList.size(), itemNumbers.size()); i++) {
+
+            String keyword = uploadList.get(i);
+            int itemNumber = itemNumbers.get(i);
+
+            for (int pageIndex = currentPageIndex; pageIndex < pages.getCount(); pageIndex++) {
+                System.out.println("Processing page " + (pageIndex + 1) + "...");
+                PDPage page = pages.get(pageIndex);
+                stripper.setStartPage(pageIndex + 1);
+                stripper.setEndPage(pageIndex + 1);
+                String pageText = stripper.getText(document);
+
+                if (pageText.toLowerCase().contains(keyword.toLowerCase())) {
+                    String bookmarkName = prefix + "-" + String.format("%04d", itemNumber);
+                    System.out.println("Adding bookmark: " + bookmarkName);
+                    PDOutlineItem bookmark = new PDOutlineItem();
+                    bookmark.setTitle(bookmarkName);
+                    PDPageXYZDestination dest = new PDPageXYZDestination();
+                    dest.setPage(page);
+                    dest.setZoom(0.673F); // Adjust the zoom level as needed.
+                    dest.setTop(1000); // Adjust the vertical position as needed.
                         PDActionGoTo action = new PDActionGoTo();
                         action.setDestination(dest);
                         bookmark.setAction(action);
