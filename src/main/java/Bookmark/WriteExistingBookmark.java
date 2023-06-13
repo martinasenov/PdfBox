@@ -21,7 +21,7 @@ import java.util.List;
 public class WriteExistingBookmark {
 
     public static void main(String[] args) throws IOException {
-        String inputFilePath = "C:\\Users\\mitha\\Downloads\\OE-ICA_6Y Check.pdf_Bookmarked.pdf";
+        String inputFilePath = "C:\\Users\\mitha\\OneDrive\\Desktop\\E1-23-05-00013_OE-ICA_6Y CHECK\\10_Customer_WP\\WO8294_MPD WORKPACK_TC.pdf_Bookmarked.pdf";
         String outputFilePath = inputFilePath+"_BookmarksWritten.pdf";
 
         processPDF(inputFilePath, outputFilePath);
@@ -89,7 +89,7 @@ public class WriteExistingBookmark {
         contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
         contentStream.setNonStrokingColor(Color.RED);
         contentStream.beginText();
-        contentStream.newLineAtOffset(494, 30); //the current setting writes it to bottom right. tx:494 and ty:840 write on the top right of the page
+        contentStream.newLineAtOffset(475, 828); //the current setting writes it to bottom right. tx:494 and ty:840 write on the top right of the page
         contentStream.showText(bookmarkTitle);
         contentStream.endText();
         contentStream.close();

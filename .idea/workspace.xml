@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cfd2f12-324e-4c49-b024-0cf59f2c7f86" name="Changes" comment="write Existing bookmark added and adjusted">
+    <list default="true" id="3cfd2f12-324e-4c49-b024-0cf59f2c7f86" name="Changes" comment="Add WP bookmarks adjusted">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Bookmark/WPBookmarksDuplicate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/AddBookmarksAndText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/AddBookmarksAndText.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/BookmarkDirectories.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/BookmarkDirectories.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/PageNumbers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/PageNumbers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/WPBookmarks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/WPBookmarks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/WriteExistingBookmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/WriteExistingBookmark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Bookmark/WPBookmarks.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Bookmark/WPBookmarks.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,22 +66,9 @@
       <recent name="C:\Users\mitha\IdeaProjects\PdfBox\src\main\java\Bookmark" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AddBookmarksAndText">
+  <component name="RunManager" selected="Application.WriteExistingBookmark">
     <configuration name="AddBookmarksAndText" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Bookmark.AddBookmarksAndText" />
-      <module name="PdfBox" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Bookmark.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AirbusXMLCreator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Bookmark.AirbusXMLCreator" />
       <module name="PdfBox" />
       <extension name="coverage">
         <pattern>
@@ -118,6 +106,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WPBookmarksDuplicate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Bookmark.WPBookmarksDuplicate" />
+      <module name="PdfBox" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Bookmark.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WriteExistingBookmark" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Bookmark.WriteExistingBookmark" />
       <module name="PdfBox" />
@@ -133,11 +134,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.WriteExistingBookmark" />
+        <item itemvalue="Application.WPBookmarksDuplicate" />
         <item itemvalue="Application.AddBookmarksAndText" />
         <item itemvalue="Application.WPBookmarks" />
         <item itemvalue="Application.PageNumbers" />
-        <item itemvalue="Application.WriteExistingBookmark" />
-        <item itemvalue="Application.AirbusXMLCreator" />
       </list>
     </recent_temporary>
   </component>
@@ -183,7 +184,8 @@
       <workItem from="1686078679965" duration="10617000" />
       <workItem from="1686168802058" duration="5888000" />
       <workItem from="1686258601721" duration="4593000" />
-      <workItem from="1686585819947" duration="4180000" />
+      <workItem from="1686585819947" duration="5710000" />
+      <workItem from="1686684534033" duration="5127000" />
     </task>
     <task id="LOCAL-00001" summary="before tesseracts">
       <created>1680819336546</created>
@@ -269,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686265885446</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Add WP bookmarks adjusted">
+      <created>1686593678652</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1686593678652</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,6 +319,7 @@
     <MESSAGE value="Zoom Levels adjusted to 0.673" />
     <MESSAGE value="write Existing bookmark added" />
     <MESSAGE value="write Existing bookmark added and adjusted" />
-    <option name="LAST_COMMIT_MESSAGE" value="write Existing bookmark added and adjusted" />
+    <MESSAGE value="Add WP bookmarks adjusted" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add WP bookmarks adjusted" />
   </component>
 </project>
