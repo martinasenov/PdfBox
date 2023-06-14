@@ -10,6 +10,8 @@ import org.apache.pdfbox.pdmodel.interactive.documentnavigation.destination.PDPa
 import org.apache.pdfbox.pdmodel.interactive.documentnavigation.destination.PDPageXYZDestination;
 import org.apache.pdfbox.pdmodel.interactive.documentnavigation.outline.PDOutlineItem;
 import org.apache.pdfbox.pdmodel.interactive.documentnavigation.outline.PDDocumentOutline;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.awt.*;
 import java.io.File;
@@ -21,10 +23,23 @@ import java.util.List;
 public class WriteExistingBookmark {
 
     public static void main(String[] args) throws IOException {
-        String inputFilePath = "C:\\Users\\mitha\\OneDrive\\Desktop\\E1-23-05-00013_OE-ICA_6Y CHECK\\10_Customer_WP\\WO8294_MPD WORKPACK_TC.pdf_Bookmarked.pdf";
-        String outputFilePath = inputFilePath+"_BookmarksWritten.pdf";
+        ArrayList<String> filePathArray = new ArrayList<>();
 
-        processPDF(inputFilePath, outputFilePath);
+        String excelPath = "C:\\Users\\mitha\\IdeaProjects\\PdfBox\\src\\main\\java\\Bookmark\\BookmarkDirectories.xlsx";
+        XSSFWorkbook workbook = new XSSFWorkbook(excelPath);
+        XSSFSheet sheet = workbook.getSheet("Sheet1");
+
+        int rowCount = sheet.getPhysicalNumberOfRows();
+
+        for (int j = 0; j < rowCount; j++) {
+            String inputFilePath = sheet.getRow(j).getCell(0).getStringCellValue();
+            filePathArray.add(inputFilePath);
+
+            String outputFilePath = inputFilePath+"_BookmarksWritten.pdf";
+
+            processPDF(inputFilePath, outputFilePath);
+
+        }
     }
 
     private static void processPDF(String inputFilePath, String outputFilePath) throws IOException {
