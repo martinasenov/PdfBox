@@ -20,8 +20,8 @@ public class AddBookmarks {
 
     public static void main(String[] args) throws IOException {
 
-        String prefix = "18293";
-        String searchKeyword = "ROUTINE CARD";
+        String prefix = "100";
+        String searchKeyword = "W 23610";
         String searchKeyword2= "ESTIMATOR COMMENT";
         String searchKeyword3= "I hereby confirm";
         String searchKeyword4= "CONTROLLER COMMENT";
@@ -79,7 +79,7 @@ public class AddBookmarks {
                             || pageText.toLowerCase().contains(searchKeyword3.toLowerCase())
                             || pageText.toLowerCase().contains(searchKeyword4.toLowerCase())
                             || pageText.toLowerCase().contains(searchKeyword5.toLowerCase())) {
-                        String bookmarkName = prefix + "-" + String.format("%04d", startNumber++);
+                        String bookmarkName = prefix + "_" + String.format("%03d", startNumber++);
                         System.out.println("Adding bookmark: " + bookmarkName);
                         PDOutlineItem bookmark = new PDOutlineItem();
                         bookmark.setTitle(bookmarkName);

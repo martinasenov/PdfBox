@@ -19,28 +19,28 @@ import java.util.Scanner;
 public class WPBookmarks {
     public static void main(String[] args) throws IOException {
         ArrayList<String> uploadList = new ArrayList<>();
-        ArrayList<Integer> itemNumbers = new ArrayList<>(); // create itemNumbers ArrayList
+        ArrayList<String> itemNumbers = new ArrayList<>(); // create itemNumbers ArrayList
 
-        String prefix = "H901 WO 18474";
+        String prefix = "";
 
-        String uploadListPath = "C:\\Users\\mitha\\OneDrive\\Desktop\\OE-IDU\\OE-IDU WorkCards with pages.xlsx";
+        String uploadListPath = "C:\\Users\\martin.asenov\\Desktop\\A7-MHH Daily Reports\\Tally_bookmark.xlsx";
         XSSFWorkbook uploadListWorkbook = new XSSFWorkbook(uploadListPath);
         XSSFSheet uploadSheet = uploadListWorkbook.getSheet("Sheet1");
         int rowCountUploadList = uploadSheet.getPhysicalNumberOfRows();
         String workOrderNumber = "";
 
-        for (int i = 1; i < rowCountUploadList; i++) {
-            workOrderNumber = uploadSheet.getRow(i).getCell(4).getStringCellValue();
+        for (int i = 600; i <= 639; i++) {  //rowCountUploadList
+            workOrderNumber = uploadSheet.getRow(i).getCell(0).getStringCellValue();
             uploadList.add(workOrderNumber);
 
 
-            int itemNumber = (int) uploadSheet.getRow(i).getCell(0).getNumericCellValue(); // read item number from column A
+            String itemNumber = uploadSheet.getRow(i).getCell(1).getStringCellValue(); // read item number from column A
             itemNumbers.add(itemNumber); // add item number to itemNumbers ArrayList
         }
 
         ArrayList<String> filePathArray = new ArrayList<>();
 
-        String excelPath = "C:\\Users\\mitha\\IdeaProjects\\PdfBox\\src\\main\\java\\Bookmark\\BookmarkDirectories.xlsx";
+        String excelPath = "C:\\Users\\martin.asenov\\IdeaProjects\\PdfBox\\src\\main\\java\\Bookmark\\BookmarkDirectories.xlsx";
         XSSFWorkbook workbook = new XSSFWorkbook(excelPath);
         XSSFSheet sheet = workbook.getSheet("Sheet1");
 
@@ -72,7 +72,7 @@ public class WPBookmarks {
     }
 
 
-    private static void processPDF(String inputFilePath, String outputFilePath, ArrayList<String> uploadList, ArrayList<Integer> itemNumbers, String prefix) throws IOException {
+    private static void processPDF(String inputFilePath, String outputFilePath, ArrayList<String> uploadList, ArrayList<String> itemNumbers, String prefix) throws IOException {
             System.out.println("Loading the input PDF file...");
             PDDocument document = PDDocument.load(new File(inputFilePath));
             PDPageTree pages = document.getPages();
@@ -92,7 +92,7 @@ public class WPBookmarks {
         for (int i = 0; i < Math.min(uploadList.size(), itemNumbers.size()); i++) {
 
             String keyword = uploadList.get(i);
-            int itemNumber = itemNumbers.get(i);
+            String itemNumber = itemNumbers.get(i);
 
 
 
@@ -104,7 +104,7 @@ public class WPBookmarks {
                 String pageText = stripper.getText(document);
 
                 if (pageText.toLowerCase().contains(keyword.toLowerCase())) {
-                    String bookmarkName = prefix + "-" + String.format("%04d", itemNumber);
+                    String bookmarkName = prefix + "" + itemNumber;
                     System.out.println("Adding bookmark: " + bookmarkName);
                     PDOutlineItem bookmark = new PDOutlineItem();
                     bookmark.setTitle(bookmarkName);
