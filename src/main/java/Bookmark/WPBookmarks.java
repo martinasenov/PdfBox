@@ -29,7 +29,7 @@ public class WPBookmarks {
         int rowCountUploadList = uploadSheet.getPhysicalNumberOfRows();
         String workOrderNumber = "";
 
-        for (int i = 600; i <= 639; i++) {  //rowCountUploadList
+        for (int i = 1194  ; i <= 1222; i++) {  //rowCountUploadList
             workOrderNumber = uploadSheet.getRow(i).getCell(0).getStringCellValue();
             uploadList.add(workOrderNumber);
 
