@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cfd2f12-324e-4c49-b024-0cf59f2c7f86" name="Changes" comment="problems with maven are fixed">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Bookmark/RemoveRestrictions.java" afterDir="false" />
+    <list default="true" id="3cfd2f12-324e-4c49-b024-0cf59f2c7f86" name="Changes" comment="NOMAD SCANNING SETTINGS">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Bookmark/Nomad/AddTextFieldToPDF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/AddBookmarksAndText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/AddBookmarksAndText.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/BookmarkDirectories.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/BookmarkDirectories.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/WPBookmarks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/WPBookmarks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/WriteExistingBookmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/WriteExistingBookmark.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Bookmark/WPBookmarks.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Bookmark/WPBookmarks.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,13 +75,26 @@
       <recent name="C:\Users\mitha\IdeaProjects\PdfBox\src\main\java\Bookmark" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.WPBookmarks">
-    <configuration name="AirbusXMLCreator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Bookmark.AirbusXMLCreator" />
+  <component name="RunManager" selected="Application.AddTextFieldToPDF">
+    <configuration name="AddTextBoxToExistingPDF" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Bookmark.Nomad.AddTextBoxToExistingPDF" />
       <module name="PdfBox" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Bookmark.*" />
+          <option name="PATTERN" value="Bookmark.Nomad.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AddTextFieldToPDF" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Bookmark.Nomad.AddTextFieldToPDF" />
+      <module name="PdfBox" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Bookmark.Nomad.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -136,38 +152,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PdfBox [test]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="test" />
-              </list>
-            </option>
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AddTextFieldToPDF" />
+        <item itemvalue="Application.AddTextBoxToExistingPDF" />
+        <item itemvalue="Application.WriteExistingBookmark" />
         <item itemvalue="Application.WPBookmarks" />
         <item itemvalue="Application.RemoveRestrictions" />
-        <item itemvalue="Maven.PdfBox [test]" />
-        <item itemvalue="Application.AirbusXMLCreator" />
-        <item itemvalue="Application.WriteExistingBookmark" />
       </list>
     </recent_temporary>
   </component>
@@ -315,7 +306,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689322025172</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="NOMAD SCANNING SETTINGS">
+      <option name="closed" value="true" />
+      <created>1690813192914</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1690813192914</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,6 +357,7 @@
     <MESSAGE value="write Existing bookmark added and adjusted" />
     <MESSAGE value="Add WP bookmarks adjusted" />
     <MESSAGE value="problems with maven are fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="problems with maven are fixed" />
+    <MESSAGE value="NOMAD SCANNING SETTINGS" />
+    <option name="LAST_COMMIT_MESSAGE" value="NOMAD SCANNING SETTINGS" />
   </component>
 </project>

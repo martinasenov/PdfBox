@@ -24,7 +24,7 @@ public class AddBookmarksAndText {
         ArrayList<Integer> itemNumbers = new ArrayList<>();
 
 
-        String prefix = "H901 WO 18474";
+        String prefix = "NTB JC";
 
         String uploadListPath = "C:\\Users\\mitha\\OneDrive\\Desktop\\OE-IDU\\OE-IDU WorkCards with pages.xlsx";
         XSSFWorkbook uploadListWorkbook = new XSSFWorkbook(uploadListPath);

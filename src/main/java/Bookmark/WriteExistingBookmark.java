@@ -25,7 +25,7 @@ public class WriteExistingBookmark {
     public static void main(String[] args) throws IOException {
         ArrayList<String> filePathArray = new ArrayList<>();
 
-        String excelPath = "C:\\Users\\mitha\\IdeaProjects\\PdfBox\\src\\main\\java\\Bookmark\\BookmarkDirectories.xlsx";
+        String excelPath = "src/main/java/Bookmark/BookmarkDirectories.xlsx";
         XSSFWorkbook workbook = new XSSFWorkbook(excelPath);
         XSSFSheet sheet = workbook.getSheet("Sheet1");
 
@@ -79,6 +79,7 @@ public class WriteExistingBookmark {
         while (iterator.hasNext()) {
             PDOutlineItem bookmark = iterator.next();
             bookmarks.add(bookmark);
+            System.out.println("Bookmark: " + bookmark.getTitle()); // print each bookmark's title
             if (bookmark.children().iterator().hasNext()) {
                 gatherBookmarks(bookmark.children().iterator(), bookmarks);
             }
@@ -103,9 +104,10 @@ public class WriteExistingBookmark {
         PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true);
         contentStream.setFont(PDType1Font.HELVETICA_BOLD, 10);
         contentStream.setNonStrokingColor(Color.RED);
+
         contentStream.beginText();
-        contentStream.newLineAtOffset(475, 828); //the current setting writes it to bottom right. tx:494 and ty:840 write on the top right of the page
-        contentStream.showText(bookmarkTitle);
+        contentStream.newLineAtOffset(480, 25); //the current setting writes it to bottom right. tx:494 and ty:840 write on the top right of the page
+        contentStream.showText("NTB JC "+bookmarkTitle);
         contentStream.endText();
         contentStream.close();
     }

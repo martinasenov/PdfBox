@@ -23,24 +23,24 @@ public class WPBookmarks {
 
         String prefix = "";
 
-        String uploadListPath = "C:\\Users\\martin.asenov\\Desktop\\A7-MHH Daily Reports\\Tally_bookmark.xlsx";
+        String uploadListPath = "C:\\Users\\martin.asenov\\Desktop\\BBJ\\P4-BBJ_Import Qutation and WO_PROPER.xlsx";
         XSSFWorkbook uploadListWorkbook = new XSSFWorkbook(uploadListPath);
         XSSFSheet uploadSheet = uploadListWorkbook.getSheet("Sheet1");
         int rowCountUploadList = uploadSheet.getPhysicalNumberOfRows();
         String workOrderNumber = "";
 
-        for (int i = 1194  ; i <= 1222; i++) {  //rowCountUploadList
-            workOrderNumber = uploadSheet.getRow(i).getCell(0).getStringCellValue();
+        for (int i = 1; i < rowCountUploadList; i++) {  //rowCountUploadList
+            workOrderNumber = uploadSheet.getRow(i).getCell(1).getStringCellValue();
             uploadList.add(workOrderNumber);
 
 
-            String itemNumber = uploadSheet.getRow(i).getCell(1).getStringCellValue(); // read item number from column A
+            String itemNumber = uploadSheet.getRow(i).getCell(0).getStringCellValue(); // read item number from column A
             itemNumbers.add(itemNumber); // add item number to itemNumbers ArrayList
         }
 
         ArrayList<String> filePathArray = new ArrayList<>();
 
-        String excelPath = "C:\\Users\\martin.asenov\\IdeaProjects\\PdfBox\\src\\main\\java\\Bookmark\\BookmarkDirectories.xlsx";
+        String excelPath = "src/main/java/Bookmark/BookmarkDirectories.xlsx";
         XSSFWorkbook workbook = new XSSFWorkbook(excelPath);
         XSSFSheet sheet = workbook.getSheet("Sheet1");
 
@@ -73,19 +73,19 @@ public class WPBookmarks {
 
 
     private static void processPDF(String inputFilePath, String outputFilePath, ArrayList<String> uploadList, ArrayList<String> itemNumbers, String prefix) throws IOException {
-            System.out.println("Loading the input PDF file...");
-            PDDocument document = PDDocument.load(new File(inputFilePath));
-            PDPageTree pages = document.getPages();
-            PDDocumentOutline outline = new PDDocumentOutline();
-            document.getDocumentCatalog().setDocumentOutline(outline);
+        System.out.println("Loading the input PDF file...");
+        PDDocument document = PDDocument.load(new File(inputFilePath));
+        PDPageTree pages = document.getPages();
+        PDDocumentOutline outline = new PDDocumentOutline();
+        document.getDocumentCatalog().setDocumentOutline(outline);
 
-            PDFTextStripper stripper = new PDFTextStripper();
+        PDFTextStripper stripper = new PDFTextStripper();
 
 
-          System.out.println("Enter starting page");
-          Scanner scanner=new Scanner(System.in);
-          int currentPageIndex = scanner.nextInt()-1;
-          scanner.nextLine();
+        System.out.println("Enter starting page");
+        Scanner scanner=new Scanner(System.in);
+        int currentPageIndex = scanner.nextInt()-1;
+        scanner.nextLine();
 
 
 
@@ -94,7 +94,7 @@ public class WPBookmarks {
             String keyword = uploadList.get(i);
             String itemNumber = itemNumbers.get(i);
 
-
+           // int currentPageIndexx=0;
 
             for (int pageIndex = currentPageIndex; pageIndex < pages.getCount(); pageIndex++) {
                 System.out.println("Processing page " + (pageIndex + 1) + "...");
@@ -104,7 +104,7 @@ public class WPBookmarks {
                 String pageText = stripper.getText(document);
 
                 if (pageText.toLowerCase().contains(keyword.toLowerCase())) {
-                    String bookmarkName = prefix + "" + itemNumber;
+                    String bookmarkName = prefix + " " + itemNumber;
                     System.out.println("Adding bookmark: " + bookmarkName);
                     PDOutlineItem bookmark = new PDOutlineItem();
                     bookmark.setTitle(bookmarkName);
@@ -112,20 +112,20 @@ public class WPBookmarks {
                     dest.setPage(page);
                     dest.setZoom(0.673F); // Adjust the zoom level as needed.
                     dest.setTop(1000); // Adjust the vertical position as needed.
-                        PDActionGoTo action = new PDActionGoTo();
-                        action.setDestination(dest);
-                        bookmark.setAction(action);
-                        outline.addLast(bookmark);
+                    PDActionGoTo action = new PDActionGoTo();
+                    action.setDestination(dest);
+                    bookmark.setAction(action);
+                    outline.addLast(bookmark);
 
-                        currentPageIndex = pageIndex + 1;
-                        break;
-                    }
+                    currentPageIndex = pageIndex + 1;
+                    break;
                 }
             }
-
-            System.out.println("Saving the output PDF file...");
-            document.save(outputFilePath);
-            document.close();
-            System.out.println("Output PDF file saved successfully.");
         }
+
+        System.out.println("Saving the output PDF file...");
+        document.save(outputFilePath);
+        document.close();
+        System.out.println("Output PDF file saved successfully.");
     }
+}
