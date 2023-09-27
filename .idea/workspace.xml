@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cfd2f12-324e-4c49-b024-0cf59f2c7f86" name="Changes" comment="NOMAD SCANNING SETTINGS">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Bookmark/Nomad/AddTextFieldToPDF.java" afterDir="false" />
+    <list default="true" id="3cfd2f12-324e-4c49-b024-0cf59f2c7f86" name="Changes" comment="Text field creator added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/AddBookmarksAndText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/AddBookmarksAndText.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/BookmarkDirectories.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/BookmarkDirectories.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/WPBookmarks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/WPBookmarks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/WriteExistingBookmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/WriteExistingBookmark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Bookmark/WPBookmarks.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Bookmark/WPBookmarks.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bookmark/Nomad/AddTextFieldToPDF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bookmark/Nomad/AddTextFieldToPDF.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,7 +308,15 @@
       <option name="project" value="LOCAL" />
       <updated>1690813192914</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Text field creator added">
+      <option name="closed" value="true" />
+      <created>1695731037549</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1695731037549</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,6 +360,7 @@
     <MESSAGE value="Add WP bookmarks adjusted" />
     <MESSAGE value="problems with maven are fixed" />
     <MESSAGE value="NOMAD SCANNING SETTINGS" />
-    <option name="LAST_COMMIT_MESSAGE" value="NOMAD SCANNING SETTINGS" />
+    <MESSAGE value="Text field creator added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Text field creator added" />
   </component>
 </project>
